@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LuckyScratch Demo</title>
+    <style>
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+          'Helvetica Neue', Arial, sans-serif;
+        background: #f5f5f5;
+        margin: 0;
+        padding: 20px;
+      }
+      .demo-wrapper {
+        max-width: 800px;
+        margin: 0 auto;
+        background: white;
+        border-radius: 8px;
+        padding: 30px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+      h2 {
+        text-align: center;
+        color: #333;
+        margin-top: 0;
+      }
+      .config-panel {
+        background: #f9f9f9;
+        border-radius: 6px;
+        padding: 20px;
+        margin-bottom: 30px;
+      }
+      .config-row {
+        margin-bottom: 15px;
+      }
+      .config-row label {
+        display: inline-block;
+        width: 120px;
+        font-weight: 500;
+        color: #666;
+      }
+      .config-row select,
+      .config-row input {
+        padding: 6px 12px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 14px;
+      }
+      .config-row input[type='number'] {
+        width: 80px;
+      }
+      .config-row input[type='color'] {
+        width: 60px;
+        height: 32px;
+        border: none;
+        cursor: pointer;
+      }
+      .container {
+        position: relative;
+        width: 300px;
+        height: 150px;
+        margin: 20px auto;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      .prize-content {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        font-size: 24px;
+        font-weight: bold;
+      }
+      .prize-content small {
+        font-size: 16px;
+        margin-top: 10px;
+        opacity: 0.9;
+      }
+      canvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+      }
+      .button-group {
+        text-align: center;
+        margin-top: 20px;
+      }
+      button {
+        padding: 10px 24px;
+        font-size: 16px;
+        cursor: pointer;
+        background: #667eea;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        margin: 0 5px;
+        transition: background 0.3s;
+      }
+      button:hover {
+        background: #5568d3;
+      }
+      button:active {
+        transform: scale(0.98);
+      }
+      .tips {
+        background: #fff3cd;
+        border: 1px solid #ffc107;
+        border-radius: 4px;
+        padding: 12px;
+        margin-top: 20px;
+        font-size: 14px;
+        color: #856404;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="demo-wrapper">
+      <h2>🎰 刮刮卡配置示例</h2>
+      <!-- 配置面板 -->
+      <div class="config-panel">
+        <h3 style="margin-top: 0; color: #333">配置选项</h3>
+
+        <div class="config-row">
+          <label>遮罩类型:</label>
+          <select id="maskType" onchange="updateConfig()">
+            <option value="color">纯色遮罩</option>
+            <option value="image">图片遮罩</option>
+          </select>
+        </div>
+
+        <div class="config-row" id="colorRow">
+          <label>遮罩颜色:</label>
+          <input
+            type="color"
+            id="maskColor"
+            value="#cccccc"
+            onchange="updateConfig()"
+          />
+          <span id="colorValue" style="margin-left: 10px; color: #666"
+            >#cccccc</span
+          >
+        </div>
+
+        <div class="config-row" id="imageRow" style="display: none">
+          <label>遮罩图片:</label>
+          <select id="maskImage" onchange="updateConfig()">
+            <option value="./imgs/bg.png">bg.png</option>
+            <option value="./imgs/0.png">0.png</option>
+            <option value="./imgs/1.png">1.png</option>
+            <option value="./imgs/2.png">2.png</option>
+          </select>
+        </div>
+
+        <div class="config-row">
+          <label>刮痕半径:</label>
+          <input
+            type="number"
+            id="scratchRadius"
+            value="20"
+            min="5"
+            max="50"
+            onchange="updateConfig()"
+          />
+          <span style="margin-left: 5px; color: #666">px</span>
+        </div>
+
+        <div class="config-row">
+          <label>完成阈值:</label>
+          <input
+            type="number"
+            id="scratchPercent"
+            value="50"
+            min="10"
+            max="100"
+            onchange="updateConfig()"
+          />
+          <span style="margin-left: 5px; color: #666">%</span>
+        </div>
+
+        <div class="config-row">
+          <label>启用权限校验:</label>
+          <input
+            type="checkbox"
+            id="enableAuth"
+            checked
+            onchange="updateConfig()"
+          />
+        </div>
+      </div>
+
+      <!-- 刮刮卡容器 -->
+      <div class="container" id="my-scratch">
+        <div class="prize-content">
+          🎉 恭喜中奖 🎉
+          <small>iPhone 15 Pro Max</small>
+        </div>
+      </div>
+
+      <!-- 按钮组 -->
+      <div class="button-group">
+        <button onclick="resetScratch()">🔄 重新刮奖</button>
+        <button onclick="toggleDisabled()">
+          <span id="disableText">🔒 禁用刮奖</span>
+        </button>
+      </div>
+
+      <!-- 提示信息 -->
+      <div class="tips">
+        💡
+        <strong>提示:</strong>
+        修改配置后会自动重新初始化刮刮卡。刮开达到阈值后会自动全部清除并弹出提示。
+      </div>
+    </div>
+
+    <script src="../dist/index.umd.js"></script>
+    <script>
+      let myScratch = null
+
+      // 模拟接口调用
+      function checkPermission() {
+        return new Promise((resolve) => {
+          setTimeout(() => {
+            // 模拟 80% 概率有资格（提高通过率方便测试）
+            const hasPermission = Math.random() > 0.2
+            resolve(hasPermission)
+          }, 500)
+        })
+      }
+
+      // 获取当前配置
+      function getConfig() {
+        const maskType = document.getElementById('maskType').value
+        const maskColor = document.getElementById('maskColor').value
+        const maskImage = document.getElementById('maskImage').value
+        const scratchRadius = parseInt(
+          document.getElementById('scratchRadius').value
+        )
+        const scratchPercent =
+          parseInt(document.getElementById('scratchPercent').value) / 100
+        const enableAuth = document.getElementById('enableAuth').checked
+
+        return {
+          width: '300px',
+          height: '150px',
+          mask: {
+            type: maskType,
+            color: maskType === 'color' ? maskColor : undefined,
+            src: maskType === 'image' ? maskImage : undefined,
+          },
+          scratch: {
+            radius: scratchRadius,
+            percent: scratchPercent,
+          },
+          onceBeforeStart: enableAuth
+            ? async () => {
+                console.log('正在校验刮奖资格...')
+                const hasPermission = await checkPermission()
+                if (!hasPermission) {
+                  alert('您暂无刮奖资格，请稍后再试！')
+                  return false
+                }
+                console.log('校验通过，可以开始刮奖')
+                return true
+              }
+            : undefined,
+          start: () => {
+            console.log('开始刮奖')
+          },
+          end: () => {
+            console.log('停止刮奖')
+          },
+          success: (progress) => {
+            console.log('刮奖完成，当前进度:', progress)
+            alert('🎉 恭喜中奖 iPhone 15 Pro Max！')
+          },
+        }
+      }
+
+      // 初始化刮刮卡
+      function initScratch() {
+        // 清除旧的 canvas
+        const container = document.querySelector('#my-scratch')
+        const oldCanvas = container.querySelector('canvas')
+        if (oldCanvas) {
+          oldCanvas.remove()
+        }
+
+        // 创建新实例
+        myScratch = new LuckyCanvas.LuckyScratch(
+          {
+            el: '#my-scratch',
+          },
+          getConfig()
+        )
+      }
+
+      // 更新配置
+      function updateConfig() {
+        const maskType = document.getElementById('maskType').value
+        const colorRow = document.getElementById('colorRow')
+        const imageRow = document.getElementById('imageRow')
+        const maskColor = document.getElementById('maskColor').value
+        const colorValue = document.getElementById('colorValue')
+
+        // 切换显示
+        if (maskType === 'color') {
+          colorRow.style.display = 'block'
+          imageRow.style.display = 'none'
+        } else {
+          colorRow.style.display = 'none'
+          imageRow.style.display = 'block'
+        }
+
+        // 更新颜色显示
+        colorValue.textContent = maskColor
+
+        // 重新初始化
+        initScratch()
+      }
+
+      // 重置刮奖
+      function resetScratch() {
+        if (myScratch) {
+          myScratch.init()
+        }
+      }
+
+      // 切换禁用状态
+      function toggleDisabled() {
+        if (myScratch) {
+          myScratch.disabled = !myScratch.disabled
+          const disableText = document.getElementById('disableText')
+          disableText.textContent = myScratch.disabled
+            ? '🔓 启用刮奖'
+            : '🔒 禁用刮奖'
+        }
+      }
+
+      // 页面加载时初始化
+      window.onload = function () {
+        initScratch()
+      }
+    </script>
+  </body>
+</html>
