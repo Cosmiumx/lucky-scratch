@@ -66,7 +66,6 @@ export default defineComponent({
     // 开始创建组件
     try {
       this.initLucky()
-      this.$emit('success')
     } catch (err) {
       this.$emit('error', err)
     } finally {
