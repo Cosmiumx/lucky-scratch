@@ -14,7 +14,7 @@ export default class LuckyScratch extends Lucky {
     percent: number
   } = {
     radius: 20,
-    percent: 0.5
+    percent: 0.5,
   }
   // 记录当前刮开的比例
   private progress: number = 0
@@ -34,53 +34,69 @@ export default class LuckyScratch extends Lucky {
   private startCallback?: () => void
   private endCallback?: () => void
   private successCallback?: (progress: number) => void
+  private afterInitCallback?: () => void
 
   /**
    * 刮刮卡构造器
    * @param config 配置项
    * @param data 抽奖数据
    */
-  constructor (config: UserConfigType, data: LuckyScratchConfig) {
+  constructor(config: UserConfigType, data: LuckyScratchConfig) {
     super(config, {
       width: data.width || '300px',
-      height: data.height || '150px'
+      height: data.height || '150px',
     })
     this.initData(data)
     // 首次初始化
     this.init()
   }
 
-  protected initData (data: LuckyScratchConfig): void {
+  protected initData(data: LuckyScratchConfig): void {
     this.$set(this, 'mask', {
       type: 'color',
       color: '#ccc',
-      ...data.mask
+      ...data.mask,
     })
     this.$set(this, 'scratch', {
       radius: 20,
       percent: 0.5,
-      ...data.scratch
+      ...data.scratch,
     })
     this.$set(this, 'onceBeforeStartCallback', data.onceBeforeStart)
     this.$set(this, 'beforeStartCallback', data.beforeStart)
     this.$set(this, 'startCallback', data.start)
     this.$set(this, 'endCallback', data.end)
     this.$set(this, 'successCallback', data.success)
+    this.$set(this, 'afterInitCallback', data.afterInit)
   }
 
-  public init (): void {
+  /**
+   * 重写 resize 方法，在尺寸变化后重新绘制蒙层
+   */
+  protected resize(): void {
+    super.resize()
+    // resize 后需要重新绘制蒙层，否则 canvas 尺寸变化会清空内容
+    // 注意：draw() 是 async 方法，但这里不需要 await，
+    // 因为对于颜色类型的蒙层，绘制是同步的；只有图片类型才需要异步加载
+    this.draw()
+    this.config.afterResize?.()
+  }
+
+  public async init(): Promise<void> {
     this.initLucky()
     // 重置状态
     this.progress = 0
     this.isScratching = false
     this.isCompleted = false
     this.isFirstScratch = true // 重置第一次刮动标志
-    this.draw()
+    await this.draw()
     // 绑定事件
     this.handleBindEvents()
+    // 触发初始化完成回调
+    this.afterInitCallback?.()
   }
 
-  private async draw (): Promise<void> {
+  private async draw(): Promise<void> {
     // 触发开始回调
     this.config.beforeInit?.()
     // 清空画布
@@ -100,7 +116,7 @@ export default class LuckyScratch extends Lucky {
     this.config.afterInit?.()
   }
 
-  private handleBindEvents (): void {
+  private handleBindEvents(): void {
     // 防止重复绑定事件
     if (this.eventsInitialized) return
     this.eventsInitialized = true
@@ -131,10 +147,10 @@ export default class LuckyScratch extends Lucky {
     })
   }
 
-  private async handleStart (e: MouseEvent | Touch): Promise<void> {
+  private async handleStart(e: MouseEvent | Touch): Promise<void> {
     // 如果已完成或被禁用，不再响应事件
     if (this.isCompleted || this.disabled) return
-    
+
     // 调用 onceBeforeStart 钩子（只在第一次刮动时）
     if (this.isFirstScratch && this.onceBeforeStartCallback) {
       try {
@@ -150,7 +166,7 @@ export default class LuckyScratch extends Lucky {
       // 标记已经不是第一次刮动了
       this.isFirstScratch = false
     }
-    
+
     // 调用 beforeStart 钩子（每次刮动都会调用）
     if (this.beforeStartCallback) {
       try {
@@ -164,18 +180,18 @@ export default class LuckyScratch extends Lucky {
         return
       }
     }
-    
+
     this.isScratching = true
     this.startCallback?.()
     this.drawArc(e)
   }
 
-  private handleMove (e: MouseEvent | Touch): void {
+  private handleMove(e: MouseEvent | Touch): void {
     if (!this.isScratching || this.isCompleted || this.disabled) return
     this.drawArc(e)
   }
 
-  private handleEnd (): void {
+  private handleEnd(): void {
     if (!this.isScratching || this.isCompleted || this.disabled) return
     this.isScratching = false
     // 计算刮开比例
@@ -183,13 +199,13 @@ export default class LuckyScratch extends Lucky {
     this.endCallback?.()
   }
 
-  private drawArc (e: MouseEvent | Touch): void {
+  private drawArc(e: MouseEvent | Touch): void {
     const canvas = this.config.canvasElement
     if (!canvas) return
     const rect = canvas.getBoundingClientRect()
     const x = (e.clientX - rect.left) * this.config.dpr
     const y = (e.clientY - rect.top) * this.config.dpr
-    
+
     this.ctx.globalCompositeOperation = 'destination-out'
     this.ctx.beginPath()
     this.ctx.arc(x, y, this.scratch.radius * this.config.dpr, 0, Math.PI * 2)
@@ -198,9 +214,14 @@ export default class LuckyScratch extends Lucky {
     this.ctx.globalCompositeOperation = 'source-over'
   }
 
-  private checkProgress (): void {
+  private checkProgress(): void {
     try {
-      const imageData = this.ctx.getImageData(0, 0, this.boxWidth * this.config.dpr, this.boxHeight * this.config.dpr)
+      const imageData = this.ctx.getImageData(
+        0,
+        0,
+        this.boxWidth * this.config.dpr,
+        this.boxHeight * this.config.dpr
+      )
       const pixels = imageData.data
       let count = 0
       for (let i = 0; i < pixels.length; i += 4) {
@@ -221,5 +242,12 @@ export default class LuckyScratch extends Lucky {
       console.error('无法计算刮开进度，可能是因为图片跨域:', err)
     }
   }
-}
 
+  /**
+   * 动态设置禁用状态
+   * @param disabled 是否禁用
+   */
+  public setDisabled(disabled: boolean): void {
+    this.disabled = disabled
+  }
+}

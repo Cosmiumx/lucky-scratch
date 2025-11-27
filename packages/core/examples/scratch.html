@@ -221,6 +221,11 @@
         💡
         <strong>提示:</strong>
         修改配置后会自动重新初始化刮刮卡。刮开达到阈值后会自动全部清除并弹出提示。
+        <br />
+        💡
+        <strong>动态禁用:</strong>
+        点击"禁用刮奖"按钮可通过 setDisabled()
+        方法运行时控制启用/禁用状态（常用于：刮奖完成后、活动结束、检测到异常等场景）。
       </div>
     </div>
 
@@ -304,6 +309,9 @@
           },
           getConfig()
         )
+
+        // 同步禁用状态到按钮文本
+        updateDisableButtonText()
       }
 
       // 更新配置
@@ -337,14 +345,26 @@
         }
       }
 
-      // 切换禁用状态
-      function toggleDisabled() {
+      // 更新禁用按钮文本
+      function updateDisableButtonText() {
         if (myScratch) {
-          myScratch.disabled = !myScratch.disabled
           const disableText = document.getElementById('disableText')
           disableText.textContent = myScratch.disabled
             ? '🔓 启用刮奖'
             : '🔒 禁用刮奖'
+        }
+      }
+
+      // 切换禁用状态
+      function toggleDisabled() {
+        if (myScratch) {
+          // 使用新的 setDisabled 方法
+          myScratch.setDisabled(!myScratch.disabled)
+          updateDisableButtonText()
+          console.log(
+            '刮奖状态已切换:',
+            myScratch.disabled ? '已禁用' : '已启用'
+          )
         }
       }
 

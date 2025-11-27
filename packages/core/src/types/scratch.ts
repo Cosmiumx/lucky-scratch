@@ -17,5 +17,6 @@ export default interface LuckyScratchConfig {
   start?: () => void
   end?: () => void
   success?: (progress: number) => void
+  afterInit?: () => void  // 初始化完成后的回调（canvas 绘制完成）
 }
 

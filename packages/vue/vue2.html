@@ -1,70 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>vue2.x</title>
-  <style>
-    body { font-family: Arial, sans-serif; padding: 20px; }
-    h2 { text-align: center; color: #333; }
-    .demo-section { margin: 40px auto; max-width: 600px; }
-    .scratch-wrapper {
-      position: relative;
-      width: 300px;
-      height: 150px;
-      margin: 20px auto;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      overflow: hidden;
-    }
-    .prize-content {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: white;
-      font-size: 24px;
-      font-weight: bold;
-    }
-    .prize-content small { font-size: 16px; margin-top: 10px; opacity: 0.9; }
-    .btn-group { text-align: center; margin-top: 15px; }
-    button {
-      padding: 8px 20px;
-      margin: 0 5px;
-      background: #667eea;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-    button:hover { background: #5568d3; }
-  </style>
-</head>
-<body>
-    <script>
-      var documentElement = document.documentElement;
-      function callback() {
-          var clientWidth = documentElement.clientWidth;
-          // 屏幕宽度大于780，不在放大
-          clientWidth = clientWidth < 780 ? clientWidth : 780;
-          documentElement.style.fontSize = clientWidth / 10 + 'px';
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>vue2.x</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
       }
-      document.addEventListener('DOMContentLoaded', callback);
-      window.addEventListener('orientationchange' in window ? 'orientationchange' : 'resize', callback);
+      h2 {
+        text-align: center;
+        color: #333;
+      }
+      .demo-section {
+        margin: 40px auto;
+        max-width: 600px;
+      }
+      .scratch-wrapper {
+        position: relative;
+        width: 8rem;
+        height: 4rem;
+        margin: 20px auto;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        overflow: hidden;
+      }
+      .prize-content {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        font-size: 24px;
+        font-weight: bold;
+      }
+      .prize-content small {
+        font-size: 16px;
+        margin-top: 10px;
+        opacity: 0.9;
+      }
+      .btn-group {
+        text-align: center;
+        margin-top: 15px;
+      }
+      button {
+        padding: 8px 20px;
+        margin: 0 5px;
+        background: #667eea;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      button:hover {
+        background: #5568d3;
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      var documentElement = document.documentElement
+      function callback() {
+        var clientWidth = documentElement.clientWidth
+        // 屏幕宽度大于780，不在放大
+        clientWidth = clientWidth < 780 ? clientWidth : 780
+        documentElement.style.fontSize = clientWidth / 10 + 'px'
+      }
+      document.addEventListener('DOMContentLoaded', callback)
+      window.addEventListener(
+        'orientationchange' in window ? 'orientationchange' : 'resize',
+        callback
+      )
     </script>
-  <div id="app">
-    <h2>Vue2 + LuckyCanvas 示例</h2>
-    
-    <!-- 大转盘示例 -->
-    <div class="demo-section">
+    <div id="app">
+      <h2>Vue2 + LuckyCanvas 示例</h2>
+
+      <!-- 大转盘示例 -->
+      <!-- <div class="demo-section">
       <h3 style="text-align: center;">大转盘抽奖</h3>
       <lucky-wheel
         ref="myLucky"
@@ -77,118 +98,147 @@
         @start="click"
         @end="end"
       />
-    </div>
+    </div> -->
 
-    <!-- 刮刮卡示例 -->
-    <div class="demo-section">
-      <h3 style="text-align: center;">刮刮卡抽奖</h3>
-      <div class="scratch-wrapper">
-        <div class="prize-content">
-          🎉 恭喜中奖 🎉
-          <small>iPhone 15 Pro Max</small>
+      <!-- 刮刮卡示例 -->
+      <div class="demo-section">
+        <h3 style="text-align: center">刮刮卡抽奖</h3>
+        <div class="scratch-wrapper">
+          <div class="prize-content">
+            🎉 恭喜中奖 🎉
+            <small>iPhone 15 Pro Max</small>
+          </div>
+          <lucky-scratch
+            ref="myScratch"
+            width="8rem"
+            height="4rem"
+            :mask="scratchMask"
+            :scratch="scratchConfig"
+            @once-before-start="handleOnceBeforeStart"
+            @start="handleScratchStart"
+            @success="handleScratchSuccess"
+          />
         </div>
-        <lucky-scratch
-          ref="myScratch"
-          width="300px"
-          height="150px"
-          :mask="scratchMask"
-          :scratch="scratchConfig"
-          @once-before-start="handleOnceBeforeStart"
-          @start="handleScratchStart"
-          @success="handleScratchSuccess"
-        />
-      </div>
-      <div class="btn-group">
-        <button @click="resetScratch">重新刮奖</button>
-        <button @click="toggleScratch">{{ scratchDisabled ? '启用' : '禁用' }}</button>
+        <div class="btn-group">
+          <button @click="resetScratch">重新刮奖</button>
+          <button @click="toggleScratch">
+            {{ scratchDisabled ? '启用' : '禁用' }}
+          </button>
+        </div>
       </div>
     </div>
-  </div>
-  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@vue/composition-api@1.2.4/dist/vue-composition-api.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vue-demi@0.11.4/lib/index.iife.js"></script>
-  <script src="./dist/index.umd.js"></script>
-  <script>
-    console.log(window.getComputedStyle(document.documentElement).fontSize)
-    var vm = new Vue({
-      el: '#app',
-      data: {
-        // 大转盘配置
-        blocks: [{ padding: '13px', background: '#d64737' }],
-        prizes: [
-          { title: '1元红包', background: '#f9e3bb', fonts: [{ text: '1元红包', top: '18%' }], range: 0.1 },
-          { title: '100元红包', background: '#f8d384', fonts: [{ text: '100元红包', top: '18%' }], range: 0.2 },
-          { title: '0.5元红包', background: '#f9e3bb', fonts: [{ text: '0.5元红包', top: '18%' }] },
-          { title: '2元红包', background: '#f8d384', fonts: [{ text: '2元红包', top: '18%' }] },
-          { title: '10元红包', background: '#f9e3bb', fonts: [{ text: '10元红包', top: '18%' }] },
-          { title: '50元红包', background: '#f8d384', fonts: [{ text: '50元红包', top: '18%' }] },
-        ],
-        buttons: [
-          { radius: '50px', background: '#d64737' },
-          { radius: '45px', background: '#fff' },
-          { radius: '41px', background: '#f6c66f', pointer: true },
-          {
-            radius: '35px', background: '#ffdea0',
-            fonts: [{ text: '开始\n抽奖', fontSize: '18px', top: -18 }]
-          }
-        ],
-        defaultStyle: { fontColor: '#d64737', fontSize: '14px' },
-        // 刮刮卡配置
-        scratchMask: {
-          type: 'color',
-          color: '#ccc'
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@vue/composition-api@1.2.4/dist/vue-composition-api.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-demi@0.11.4/lib/index.iife.js"></script>
+    <script src="./dist/index.umd.js"></script>
+    <script>
+      console.log(window.getComputedStyle(document.documentElement).fontSize)
+      var vm = new Vue({
+        el: '#app',
+        data: {
+          // 大转盘配置
+          blocks: [{ padding: '13px', background: '#d64737' }],
+          prizes: [
+            {
+              title: '1元红包',
+              background: '#f9e3bb',
+              fonts: [{ text: '1元红包', top: '18%' }],
+              range: 0.1,
+            },
+            {
+              title: '100元红包',
+              background: '#f8d384',
+              fonts: [{ text: '100元红包', top: '18%' }],
+              range: 0.2,
+            },
+            {
+              title: '0.5元红包',
+              background: '#f9e3bb',
+              fonts: [{ text: '0.5元红包', top: '18%' }],
+            },
+            {
+              title: '2元红包',
+              background: '#f8d384',
+              fonts: [{ text: '2元红包', top: '18%' }],
+            },
+            {
+              title: '10元红包',
+              background: '#f9e3bb',
+              fonts: [{ text: '10元红包', top: '18%' }],
+            },
+            {
+              title: '50元红包',
+              background: '#f8d384',
+              fonts: [{ text: '50元红包', top: '18%' }],
+            },
+          ],
+          buttons: [
+            { radius: '50px', background: '#d64737' },
+            { radius: '45px', background: '#fff' },
+            { radius: '41px', background: '#f6c66f', pointer: true },
+            {
+              radius: '35px',
+              background: '#ffdea0',
+              fonts: [{ text: '开始\n抽奖', fontSize: '18px', top: -18 }],
+            },
+          ],
+          defaultStyle: { fontColor: '#d64737', fontSize: '14px' },
+          // 刮刮卡配置
+          scratchMask: {
+            type: 'color',
+            color: '#ccc',
+          },
+          scratchConfig: {
+            radius: 20,
+            percent: 0.5,
+          },
+          scratchDisabled: false,
         },
-        scratchConfig: {
-          radius: 20,
-          percent: 0.5
-        },
-        scratchDisabled: false
-      },
-      methods: {
-        // 大转盘方法
-        click () {
-          this.$refs.myLucky.play()
-          setTimeout(() => {
-            this.$refs.myLucky.stop()
-          }, 100)
-        },
-        end (prize) {
-          console.log(prize.fonts[0].text)
-        },
-        // 刮刮卡方法
-        handleOnceBeforeStart: function(resolve) {
-          console.log('正在校验刮奖资格...')
-          // 模拟异步校验
-          setTimeout(function() {
-            var hasPermission = Math.random() > 0.2
-            if (!hasPermission) {
-              alert('您暂无刮奖资格，请稍后再试！')
-              resolve(false)
-            } else {
-              console.log('校验通过，可以开始刮奖')
-              resolve(true)
+        methods: {
+          // 大转盘方法
+          click() {
+            this.$refs.myLucky.play()
+            setTimeout(() => {
+              this.$refs.myLucky.stop()
+            }, 100)
+          },
+          end(prize) {
+            console.log(prize.fonts[0].text)
+          },
+          // 刮刮卡方法
+          handleOnceBeforeStart: function (resolve) {
+            console.log('正在校验刮奖资格...')
+            // 模拟异步校验
+            setTimeout(function () {
+              var hasPermission = Math.random() > 0.2
+              if (!hasPermission) {
+                alert('您暂无刮奖资格，请稍后再试！')
+                resolve(false)
+              } else {
+                console.log('校验通过，可以开始刮奖')
+                resolve(true)
+              }
+            }, 500)
+          },
+          handleScratchStart: function () {
+            console.log('开始刮奖')
+          },
+          handleScratchSuccess: function (progress) {
+            console.log('刮奖完成，进度:', progress)
+            alert('🎉 恭喜中奖 iPhone 15 Pro Max！')
+          },
+          resetScratch: function () {
+            this.$refs.myScratch.init()
+          },
+          toggleScratch: function () {
+            var lucky = this.$refs.myScratch.lucky
+            if (lucky) {
+              lucky.disabled = !lucky.disabled
+              this.scratchDisabled = lucky.disabled
             }
-          }, 500)
+          },
         },
-        handleScratchStart: function() {
-          console.log('开始刮奖')
-        },
-        handleScratchSuccess: function(progress) {
-          console.log('刮奖完成，进度:', progress)
-          alert('🎉 恭喜中奖 iPhone 15 Pro Max！')
-        },
-        resetScratch: function() {
-          this.$refs.myScratch.init()
-        },
-        toggleScratch: function() {
-          var lucky = this.$refs.myScratch.lucky
-          if (lucky) {
-            lucky.disabled = !lucky.disabled
-            this.scratchDisabled = lucky.disabled
-          }
-        }
-      }
-    })
-  </script>
-</body>
+      })
+    </script>
+  </body>
 </html>
