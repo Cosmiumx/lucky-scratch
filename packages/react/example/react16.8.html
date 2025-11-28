@@ -21,52 +21,100 @@
     <div id="root"></div>
     <script src="../dist/index.umd.js"></script>
     <script type="text/babel">
-      function App() {
-        const myLucky = React.useRef()
-        const buttons = [
-          { radius: '40%', background: '#617df2' },
-          { radius: '35%', background: '#afc8ff' },
-          {
-            radius: '30%',
-            background: '#869cfa',
-            pointer: true,
-            fonts: [{ text: '开始', top: '-10px' }],
-          },
-        ]
-        const prizes = [
-          { background: '#e9e8fe', fonts: [{ text: '0' }] },
-          { background: '#b8c5f2', fonts: [{ text: '1' }] },
-          { background: '#e9e8fe', fonts: [{ text: '2' }] },
-          { background: '#b8c5f2', fonts: [{ text: '3' }] },
-          { background: '#e9e8fe', fonts: [{ text: '4' }] },
-          { background: '#b8c5f2', fonts: [{ text: '5' }] },
-        ]
-        function onSuccess() {
+      class App extends React.Component {
+        constructor(props) {
+          super(props)
+          this.myLucky = React.createRef()
+          this.myScratch = React.createRef()
+        }
+        onSuccess() {
           console.log('success')
         }
-        function onStart() {
-          myLucky.current.play()
+        onStart() {
+          this.myLucky.current.play()
           setTimeout(() => {
             const index = (Math.random() * 6) >> 0
-            myLucky.current.stop(index)
+            this.myLucky.current.stop(index)
           }, 2500)
           console.log('start')
         }
-        function onEnd() {
+        onEnd() {
           console.log('end')
         }
-        return (
-          <ReactLuckyCanvas.LuckyWheel
-            ref={myLucky}
-            width="300px"
-            height="300px"
-            prizes={prizes}
-            buttons={buttons}
-            onSuccess={onSuccess}
-            onStart={onStart}
-            onEnd={onEnd}
-          />
-        )
+        onScratchSuccess(progress) {
+          console.log('刮奖完成，当前进度:', progress)
+          alert('🎉 恭喜中奖 iPhone 15 Pro Max！')
+        }
+        resetScratch() {
+          if (this.myScratch.current) {
+            this.myScratch.current.init()
+          }
+        }
+        render() {
+          const buttons = [
+            { radius: '40%', background: '#617df2' },
+            { radius: '35%', background: '#afc8ff' },
+            {
+              radius: '30%',
+              background: '#869cfa',
+              pointer: true,
+              fonts: [{ text: '开始', top: '-10px' }],
+            },
+          ]
+          const prizes = [
+            { background: '#e9e8fe', fonts: [{ text: '0' }] },
+            { background: '#b8c5f2', fonts: [{ text: '1' }] },
+            { background: '#e9e8fe', fonts: [{ text: '2' }] },
+            { background: '#b8c5f2', fonts: [{ text: '3' }] },
+            { background: '#e9e8fe', fonts: [{ text: '4' }] },
+            { background: '#b8c5f2', fonts: [{ text: '5' }] },
+          ]
+          const mask = {
+            type: 'color',
+            color: '#ccc',
+          }
+          const scratch = {
+            radius: 20,
+            percent: 0.5,
+          }
+          return (
+            <div style={{ padding: '20px', textAlign: 'center' }}>
+              <h2>大转盘示例</h2>
+              <ReactLuckyCanvas.LuckyWheel
+                ref={this.myLucky}
+                width="300px"
+                height="300px"
+                prizes={prizes}
+                buttons={buttons}
+                onSuccess={this.onSuccess}
+                onStart={this.onStart}
+                onEnd={this.onEnd}
+              />
+              <div style={{ marginTop: '40px' }}>
+                <h2>刮刮卡示例</h2>
+                <div style={{ position: 'relative', width: '300px', height: '150px', margin: '20px auto', border: '1px solid #ddd', borderRadius: '8px', overflow: 'hidden' }}>
+                  <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', color: 'white', fontSize: '24px', fontWeight: 'bold' }}>
+                    🎉 恭喜中奖 🎉
+                    <small style={{ fontSize: '16px', marginTop: '10px', opacity: 0.9 }}>iPhone 15 Pro Max</small>
+                  </div>
+                  <ReactLuckyCanvas.LuckyScratch
+                    ref={this.myScratch}
+                    width="300px"
+                    height="150px"
+                    mask={mask}
+                    scratch={scratch}
+                    onSuccess={this.onScratchSuccess}
+                    onStart={() => console.log('开始刮奖')}
+                    onEnd={() => console.log('停止刮奖')}
+                  />
+                </div>
+                <button onClick={() => this.resetScratch()} style={{ padding: '10px 24px', fontSize: '16px', cursor: 'pointer', background: '#667eea', color: 'white', border: 'none', borderRadius: '6px', marginTop: '10px' }}>
+                  🔄 重新刮奖
+                </button>
+              </div>
+            </div>
+          )
+        }
       }
       ReactDOM.render(
         <React.StrictMode>
