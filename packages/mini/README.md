@@ -1,40 +1,103 @@
 
 <div align="center">
-  <img src="https://unpkg.com/buuing@0.0.1/imgs/lucky-canvas.jpg" width="210" alt="logo" />
-  <h1>微信小程序 抽奖组件</h1>
-  <p>一个基于微信小程序的 ( 大转盘 / 九宫格 / 老虎机 ) 抽奖插件</p>
-  <p>
-    <a href="https://github.com/buuing/lucky-canvas/stargazers" target="_black">
-      <img src="https://img.shields.io/github/stars/buuing/lucky-canvas?color=%23ffba15&logo=github&style=flat-square" alt="stars" />
-    </a>
-    <a href="https://github.com/buuing/lucky-canvas/network/members" target="_black">
-      <img src="https://img.shields.io/github/forks/buuing/lucky-canvas?color=%23ffba15&logo=github&style=flat-square" alt="forks" />
-    </a>
-    <a href="https://github.com/buuing" target="_black">
-      <img src="https://img.shields.io/badge/Author-%20buuing%20-7289da.svg?&logo=github&style=flat-square" alt="author" />
-    </a>
-    <a href="https://github.com/buuing/lucky-canvas/blob/master/LICENSE" target="_black">
-      <img src="https://img.shields.io/github/license/buuing/lucky-canvas?color=%232dce89&logo=github&style=flat-square" alt="license" />
-    </a>
-  </p>
+  <h1>微信小程序 刮刮卡组件</h1>
+  <p>一个基于微信小程序的刮刮卡抽奖插件</p>
 </div>
 
 <br />
 
-## 文档 - Document
+## 安装 - Installation
 
-- **中文**：[https://100px.net](https://100px.net)
+```bash
+npm install @lucky-scratch/mini
+```
 
 <br />
 
 ## 使用 - Usage
 
-- [**在 微信小程序 中使用**](https://100px.net/usage/wx.html)
+### 1. 在 app.json 中配置组件
+
+```json
+{
+  "usingComponents": {
+    "lucky-scratch": "./components/lucky-scratch/index"
+  }
+}
+```
+
+### 2. 在页面中使用
+
+```xml
+<lucky-scratch
+  id="lucky-scratch"
+  width="600rpx"
+  height="400rpx"
+  mask="{{mask}}"
+  scratch="{{scratch}}"
+  bindstart="onScratchStart"
+  bindend="onScratchEnd"
+  bindsuccess="onScratchSuccess"
+/>
+```
+
+### 3. 配置参数
+
+```javascript
+Page({
+  data: {
+    mask: {
+      type: 'color',
+      color: '#ccc'
+    },
+    scratch: {
+      radius: 20,
+      percent: 0.5
+    }
+  },
+  onScratchStart() {
+    console.log('开始刮奖')
+  },
+  onScratchEnd() {
+    console.log('停止刮奖')
+  },
+  onScratchSuccess(e) {
+    console.log('刮奖完成，进度:', e.detail)
+  }
+})
+```
 
 <br />
 
-## 🙏🙏🙏 点个Star
+## API
 
-**如果您觉得这个项目还不错, 可以在 [Github](https://github.com/buuing/lucky-canvas) 上面帮我点个`star`, 支持一下作者 ☜(ﾟヮﾟ☜)**
+### 属性
+
+| 属性 | 类型 | 默认值 | 说明 |
+|------|------|--------|------|
+| width | String | '600rpx' | 画布宽度 |
+| height | String | '400rpx' | 画布高度 |
+| mask | Object | - | 遮罩层配置 |
+| scratch | Object | - | 刮奖配置 |
+
+### 事件
+
+| 事件名 | 说明 | 回调参数 |
+|--------|------|----------|
+| bindstart | 开始刮奖时触发 | - |
+| bindend | 停止刮奖时触发 | - |
+| bindsuccess | 刮奖完成时触发 | progress (刮开的进度) |
+
+### 方法
+
+| 方法名 | 说明 |
+|--------|------|
+| init() | 重置刮刮卡 |
+
+<br />
+
+## License
+
+Apache-2.0
 
 <br />

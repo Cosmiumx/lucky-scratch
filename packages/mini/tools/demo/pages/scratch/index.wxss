@@ -1,0 +1,82 @@
+.container {
+  padding: 40rpx;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.title {
+  text-align: center;
+  font-size: 48rpx;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 60rpx;
+}
+
+.scratch-wrapper {
+  position: relative;
+  width: 600rpx;
+  height: 400rpx;
+  margin: 0 auto 40rpx;
+  border-radius: 20rpx;
+  overflow: hidden;
+  box-shadow: 0 8rpx 32rpx rgba(0, 0, 0, 0.3);
+}
+
+.prize-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #ffd89b 0%, #19547b 100%);
+  z-index: 0;
+}
+
+.prize-icon {
+  font-size: 80rpx;
+  margin-bottom: 20rpx;
+}
+
+.prize-title {
+  font-size: 48rpx;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 10rpx;
+}
+
+.prize-name {
+  font-size: 32rpx;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.reset-btn {
+  width: 600rpx;
+  height: 88rpx;
+  line-height: 88rpx;
+  margin: 0 auto;
+  background: white;
+  color: #667eea;
+  font-size: 32rpx;
+  font-weight: bold;
+  border-radius: 44rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.2);
+}
+
+.tips {
+  margin-top: 60rpx;
+  padding: 40rpx;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 20rpx;
+}
+
+.tip-item {
+  color: white;
+  font-size: 28rpx;
+  line-height: 48rpx;
+  margin-bottom: 10rpx;
+}
+

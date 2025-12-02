@@ -24,22 +24,7 @@
       class App extends React.Component {
         constructor(props) {
           super(props)
-          this.myLucky = React.createRef()
           this.myScratch = React.createRef()
-        }
-        onSuccess() {
-          console.log('success')
-        }
-        onStart() {
-          this.myLucky.current.play()
-          setTimeout(() => {
-            const index = (Math.random() * 6) >> 0
-            this.myLucky.current.stop(index)
-          }, 2500)
-          console.log('start')
-        }
-        onEnd() {
-          console.log('end')
         }
         onScratchSuccess(progress) {
           console.log('刮奖完成，当前进度:', progress)
@@ -51,24 +36,6 @@
           }
         }
         render() {
-          const buttons = [
-            { radius: '40%', background: '#617df2' },
-            { radius: '35%', background: '#afc8ff' },
-            {
-              radius: '30%',
-              background: '#869cfa',
-              pointer: true,
-              fonts: [{ text: '开始', top: '-10px' }],
-            },
-          ]
-          const prizes = [
-            { background: '#e9e8fe', fonts: [{ text: '0' }] },
-            { background: '#b8c5f2', fonts: [{ text: '1' }] },
-            { background: '#e9e8fe', fonts: [{ text: '2' }] },
-            { background: '#b8c5f2', fonts: [{ text: '3' }] },
-            { background: '#e9e8fe', fonts: [{ text: '4' }] },
-            { background: '#b8c5f2', fonts: [{ text: '5' }] },
-          ]
           const mask = {
             type: 'color',
             color: '#ccc',
@@ -79,17 +46,6 @@
           }
           return (
             <div style={{ padding: '20px', textAlign: 'center' }}>
-              <h2>大转盘示例</h2>
-              <ReactLuckyCanvas.LuckyWheel
-                ref={this.myLucky}
-                width="300px"
-                height="300px"
-                prizes={prizes}
-                buttons={buttons}
-                onSuccess={this.onSuccess}
-                onStart={this.onStart}
-                onEnd={this.onEnd}
-              />
               <div style={{ marginTop: '40px' }}>
                 <h2>刮刮卡示例</h2>
                 <div style={{ position: 'relative', width: '300px', height: '150px', margin: '20px auto', border: '1px solid #ddd', borderRadius: '8px', overflow: 'hidden' }}>

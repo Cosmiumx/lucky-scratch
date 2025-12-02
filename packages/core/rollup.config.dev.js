@@ -47,7 +47,7 @@ export default {
       open: true,
       port: 13000,
       contentBase: './',
-      openPage: '/examples/index.html'
+      openPage: '/examples/scratch.html'
     }),
   ]
 }

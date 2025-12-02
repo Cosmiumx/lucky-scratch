@@ -1,0 +1,30 @@
+<view class="container">
+  <view class="title">刮刮卡抽奖示例</view>
+  
+  <view class="scratch-wrapper">
+    <view class="prize-content">
+      <view class="prize-icon">🎉</view>
+      <view class="prize-title">恭喜中奖</view>
+      <view class="prize-name">iPhone 15 Pro Max</view>
+    </view>
+    
+    <lucky-scratch
+      id="lucky-scratch"
+      width="600rpx"
+      height="400rpx"
+      mask="{{mask}}"
+      scratch="{{scratch}}"
+      bindstart="onScratchStart"
+      bindend="onScratchEnd"
+      bindsuccess="onScratchSuccess"
+    />
+  </view>
+  
+  <button class="reset-btn" bindtap="resetScratch">🔄 重新刮奖</button>
+  
+  <view class="tips">
+    <view class="tip-item">💡 用手指在灰色区域滑动即可刮奖</view>
+    <view class="tip-item">💡 刮开超过 50% 即可查看中奖结果</view>
+  </view>
+</view>
+
