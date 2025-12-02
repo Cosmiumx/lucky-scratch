@@ -27,6 +27,6 @@
   },
   "homepage": "https://100px.net",
   "dependencies": {
-    "lucky-scratch": "~1.7.19"
+    "lucky-scratch": "^1.0.0"
   }
 }
