@@ -1,7 +1,7 @@
 {
-  "name": "@lucky-canvas/react",
+  "name": "@lucky-scratch/react",
   "version": "0.1.13",
-  "description": "react ( 大转盘 / 九宫格 / 老虎机 ) 抽奖插件",
+  "description": "react 刮刮卡抽奖插件",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
   "unpkg": "dist/index.umd.js",
@@ -13,18 +13,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/LuckDraw/lucky-canvas.git"
+    "url": "git+https://github.com/LuckDraw/lucky-scratch.git"
   },
   "keywords": [
-    "react抽奖插件",
-    "大转盘抽奖",
-    "九宫格抽奖",
-    "老虎机抽奖"
+    "react刮刮卡",
+    "刮奖",
+    "抽奖插件"
   ],
   "author": "ldq <ldq404@qq.com>",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/LuckDraw/lucky-canvas/issues"
+    "url": "https://github.com/LuckDraw/lucky-scratch/issues"
   },
   "homepage": "https://100px.net",
   "files": [
@@ -45,6 +44,6 @@
     "rollup-plugin-terser": "^7.0.2"
   },
   "dependencies": {
-    "lucky-canvas": "^1.7.27"
+    "lucky-scratch": "^1.7.27"
   }
 }

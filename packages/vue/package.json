@@ -1,16 +1,15 @@
 {
-  "name": "@lucky-canvas/vue",
+  "name": "@lucky-scratch/vue",
   "version": "0.1.11",
-  "description": "一个支持 vue2 / vue3 的（大转盘 / 九宫格 / 老虎机）luckydraw 抽奖插件",
+  "description": "一个支持 vue2 / vue3 的刮刮卡抽奖插件",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
   "unpkg": "dist/index.umd.js",
   "jsdelivr": "dist/index.umd.js",
   "types": "types/index.d.ts",
   "keywords": [
-    "vue3抽奖",
-    "大转盘抽奖",
-    "九宫格抽奖",
+    "vue刮刮卡",
+    "刮奖",
     "抽奖插件",
     "web抽奖",
     "移动端抽奖",
@@ -32,7 +31,7 @@
   "homepage": "https://100px.net",
   "dependencies": {
     "@vue/composition-api": "^1.0.0",
-    "lucky-canvas": "^1.7.23",
+    "lucky-scratch": "^1.7.23",
     "vue-demi": "^0.7.4"
   },
   "peerDependencies": {

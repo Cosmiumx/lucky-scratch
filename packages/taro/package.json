@@ -1,19 +1,18 @@
 {
-  "name": "@lucky-canvas/taro",
+  "name": "@lucky-scratch/taro",
   "version": "0.0.14",
-  "description": "基于 taro 实现的大转盘 / 九宫格 / 老虎机抽奖插件",
+  "description": "基于 taro 实现的刮刮卡抽奖插件",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/LuckDraw/lucky-canvas.git"
+    "url": "git+https://github.com/LuckDraw/lucky-scratch.git"
   },
   "keywords": [
-    "taro抽奖插件",
-    "taro大转盘抽奖",
-    "taro九宫格抽奖"
+    "taro刮刮卡",
+    "taro刮奖"
   ],
   "author": "ldq <ldq404@qq.com>",
   "license": "Apache-2.0",
@@ -24,10 +23,10 @@
     "taro2"
   ],
   "bugs": {
-    "url": "https://github.com/LuckDraw/lucky-canvas/issues"
+    "url": "https://github.com/LuckDraw/lucky-scratch/issues"
   },
   "homepage": "https://100px.net",
   "dependencies": {
-    "lucky-canvas": "~1.7.19"
+    "lucky-scratch": "~1.7.19"
   }
 }

@@ -1,0 +1,25 @@
+<view class="lucky-scratch-box" style="width: {{width}}; height: {{height}};">
+  <canvas
+    wx:if="{{showCanvas}}"
+    type="2d"
+    id="lucky-scratch"
+    class="lucky-scratch-canvas"
+    style="width: {{width}}; height: {{height}};"
+  ></canvas>
+  <image
+    wx:if="{{luckyImg}}"
+    class="lucky-scratch-img"
+    src="{{luckyImg}}"
+    mode="aspectFill"
+    style="width: {{width}}; height: {{height}};"
+    bindload="luckyImgLoad"
+  ></image>
+  <image
+    wx:if="{{mask.type === 'image' && mask.src}}"
+    data-name="mask"
+    src="{{mask.src}}"
+    bindload="imgBindload"
+    style="position: fixed; left: -9999px; top: -9999px;"
+  ></image>
+</view>
+

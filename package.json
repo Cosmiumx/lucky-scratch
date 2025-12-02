@@ -1,13 +1,13 @@
 {
-  "name": "lucky-canvas",
+  "name": "lucky-scratch",
   "devDependencies": {
     "lerna": "^4.0.0"
   },
   "scripts": {
     "install": "lerna bootstrap",
-    "dev": "lerna exec --scope=lucky-canvas -- npm run dev",
-    "dev:vue": "lerna run --scope=lucky-canvas --scope=@lucky-canvas/vue dev --parallel",
-    "dev:react": "lerna run --scope=lucky-canvas --scope=@lucky-canvas/react dev --parallel",
+    "dev": "lerna exec --scope=lucky-scratch -- npm run dev",
+    "dev:vue": "lerna run --scope=lucky-scratch --scope=@lucky-scratch/vue dev --parallel",
+    "dev:react": "lerna run --scope=lucky-scratch --scope=@lucky-scratch/react dev --parallel",
     "dev:uni": "",
     "dev:taro": "",
     "dev:mini": "",

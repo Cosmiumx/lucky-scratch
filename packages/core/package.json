@@ -1,7 +1,7 @@
 {
-  "name": "lucky-canvas",
+  "name": "lucky-scratch",
   "version": "1.7.26",
-  "description": "一个基于原生 js 的（大转盘 / 九宫格 / 老虎机）抽奖插件",
+  "description": "一个基于原生 js 的刮刮卡抽奖插件",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
   "unpkg": "dist/index.umd.js",
@@ -12,11 +12,11 @@
     "build": "rollup --config rollup.config.build.js"
   },
   "homepage": "https://100px.net",
-  "bugs": "https://github.com/LuckDraw/lucky-canvas/issues",
+  "bugs": "https://github.com/LuckDraw/lucky-scratch/issues",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/LuckDraw/lucky-canvas.git",
-    "directory": "packages/lucky-canvas"
+    "url": "git+https://github.com/LuckDraw/lucky-scratch.git",
+    "directory": "packages/lucky-scratch"
   },
   "author": "ldq <ldq404@qq.com>",
   "license": "Apache-2.0",
@@ -26,9 +26,8 @@
     "index.js"
   ],
   "keywords": [
-    "大转盘抽奖",
-    "九宫格抽奖",
-    "老虎机抽奖",
+    "刮刮卡",
+    "刮奖",
     "抽奖插件",
     "js抽奖",
     "移动端抽奖",

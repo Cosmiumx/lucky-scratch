@@ -1,5 +1,5 @@
 import { defineComponent } from 'vue-demi'
-import { LuckyScratch } from 'lucky-canvas'
+import { LuckyScratch } from 'lucky-scratch'
 import h from '../utils/h-demi'
 // @ts-ignore
 import { name, version } from '../../package.json'

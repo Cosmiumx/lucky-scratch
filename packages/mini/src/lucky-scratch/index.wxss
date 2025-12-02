@@ -1,0 +1,17 @@
+.lucky-scratch-box {
+  position: relative;
+  display: inline-block;
+}
+
+.lucky-scratch-canvas {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.lucky-scratch-img {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+

@@ -1,5 +1,5 @@
 import React from 'react'
-import { LuckyScratch as Scratch } from 'lucky-canvas'
+import { LuckyScratch as Scratch } from 'lucky-scratch'
 import { name, version } from '../../package.json'
 
 export default class LuckyScratch extends React.Component {
