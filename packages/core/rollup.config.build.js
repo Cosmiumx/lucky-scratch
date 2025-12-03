@@ -26,7 +26,7 @@ export default [
       {
         file: pkg.jsdelivr,
         format: 'umd',
-        name: 'LuckyCanvas',
+        name: 'LuckyScratch',
         sourcemap: false,
       },
     ],

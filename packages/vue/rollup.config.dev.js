@@ -17,11 +17,11 @@ export default [
       {
         file: pkg.jsdelivr,
         format: 'umd',
-        name: 'VueLuckyCanvas',
+        name: 'VueLuckyScratch',
         sourcemap: true,
         globals: {
           'vue-demi': 'VueDemi',
-          'lucky-canvas': 'LuckyCanvas',
+          'lucky-scratch': 'LuckyScratch',
         },
       },
     ],
