@@ -38,6 +38,7 @@ Component({
     },
   },
   ready() {
+    console.log('LuckyScratch :', LuckyScratch)
     wx.createSelectorQuery().in(this).select('#lucky-scratch').fields({
       node: true, size: true
     }).exec((res) => {

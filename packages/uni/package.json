@@ -16,6 +16,6 @@
   "author": "ldq <ldq404@qq.com>",
   "license": "Apache-2.0",
   "dependencies": {
-    "lucky-scratch": "^1.0.0"
+    "lucky-scratch": "^1.0.1"
   }
 }

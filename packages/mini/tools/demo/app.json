@@ -9,6 +9,6 @@
     "navigationBarTextStyle":"white"
   },
   "usingComponents": {
-    "lucky-scratch": "./components/lucky-scratch/index"
+    "lucky-scratch": "./components/lucky-scratch-component/index"
   }
 }
