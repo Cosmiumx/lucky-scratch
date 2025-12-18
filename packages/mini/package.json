@@ -1,6 +1,6 @@
 {
   "name": "@lucky-scratch/mini",
-  "version": "0.0.8",
+  "version": "1.0.2",
   "description": "微信小程序刮刮卡抽奖组件",
   "main": "dist/index.js",
   "scripts": {
@@ -69,6 +69,6 @@
     "webpack-node-externals": "^1.7.2"
   },
   "dependencies": {
-    "lucky-scratch": "^1.0.1"
+    "lucky-scratch": "^1.0.2"
   }
 }
