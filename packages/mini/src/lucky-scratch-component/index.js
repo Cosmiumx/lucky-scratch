@@ -38,7 +38,7 @@ Component({
     },
   },
   ready() {
-    console.log('LuckyScratch :', LuckyScratch)
+    console.log('LuckyScratch 123:', LuckyScratch)
     wx.createSelectorQuery().in(this).select('#lucky-scratch').fields({
       node: true, size: true
     }).exec((res) => {
@@ -82,12 +82,14 @@ Component({
           return result !== false
         },
         beforeStart: async () => {
+          console.log('beforeStart compose:')
           const result = await new Promise((resolve) => {
             this.triggerEvent('before-start', { resolve })
           })
           return result !== false
         },
         start: () => {
+          console.log('Start compose:')
           this.triggerEvent('start')
         },
         end: () => {

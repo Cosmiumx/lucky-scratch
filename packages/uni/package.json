@@ -1,6 +1,6 @@
 {
   "name": "@lucky-scratch/uni",
-  "version": "1.0.2",
+  "version": "1.0.1",
   "description": "uni-app 刮刮卡抽奖插件",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -16,6 +16,6 @@
   "author": "ldq <ldq404@qq.com>",
   "license": "Apache-2.0",
   "dependencies": {
-    "lucky-scratch": "^1.0.2"
+    "lucky-scratch": "^1.0.1"
   }
 }

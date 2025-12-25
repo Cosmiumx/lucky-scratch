@@ -29,6 +29,7 @@ Page({
   },
   resetScratch() {
     const child = this.selectComponent('#lucky-scratch')
+    console.log('resetScratch :', child)
     if (child) {
       child.init()
     }

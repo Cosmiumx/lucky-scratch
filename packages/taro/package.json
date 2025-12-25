@@ -1,6 +1,6 @@
 {
   "name": "@lucky-scratch/taro",
-  "version": "1.0.2",
+  "version": "1.0.1",
   "description": "基于 taro 实现的刮刮卡抽奖插件",
   "main": "index.js",
   "scripts": {
@@ -27,6 +27,6 @@
   },
   "homepage": "https://100px.net",
   "dependencies": {
-    "lucky-scratch": "^1.0.2"
+    "lucky-scratch": "^1.0.1"
   }
 }
