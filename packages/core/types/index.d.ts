@@ -220,12 +220,37 @@ declare class LuckyScratch extends Lucky {
     private handleMove;
     private handleEnd;
     private drawArc;
+    /**
+     * 在指定坐标绘制刮痕
+     * @param x 相对于 canvas 的 x 坐标（物理像素，已乘以 dpr）
+     * @param y 相对于 canvas 的 y 坐标（物理像素，已乘以 dpr）
+     */
+    private drawArcAt;
     private checkProgress;
     /**
      * 动态设置禁用状态
      * @param disabled 是否禁用
      */
     setDisabled(disabled: boolean): void;
+    /**
+     * 公共方法：处理触摸/鼠标开始事件
+     * 供小程序、uni-app 等非 DOM 环境使用
+     * @param x 相对于 canvas 的 x 坐标（逻辑像素）
+     * @param y 相对于 canvas 的 y 坐标（逻辑像素）
+     */
+    handleTouchStart(x: number, y: number): Promise<void>;
+    /**
+     * 公共方法：处理触摸/鼠标移动事件
+     * 供小程序、uni-app 等非 DOM 环境使用
+     * @param x 相对于 canvas 的 x 坐标（逻辑像素）
+     * @param y 相对于 canvas 的 y 坐标（逻辑像素）
+     */
+    handleTouchMove(x: number, y: number): void;
+    /**
+     * 公共方法：处理触摸/鼠标结束事件
+     * 供小程序、uni-app 等非 DOM 环境使用
+     */
+    handleTouchEnd(): void;
 }
 
 /**

@@ -1,19 +1,13 @@
 <view class="lucky-scratch-box" style="width: {{width}}; height: {{height}};">
   <canvas
-    wx:if="{{showCanvas}}"
     type="2d"
     id="lucky-scratch"
     class="lucky-scratch-canvas"
     style="width: {{width}}; height: {{height}};"
+    bindtouchstart="handleTouchStart"
+    bindtouchmove="handleTouchMove"
+    bindtouchend="handleTouchEnd"
   ></canvas>
-  <image
-    wx:if="{{luckyImg}}"
-    class="lucky-scratch-img"
-    src="{{luckyImg}}"
-    mode="aspectFill"
-    style="width: {{width}}; height: {{height}};"
-    bindload="luckyImgLoad"
-  ></image>
   <image
     wx:if="{{mask.type === 'image' && mask.src}}"
     data-name="mask"

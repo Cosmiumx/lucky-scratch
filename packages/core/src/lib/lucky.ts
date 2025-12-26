@@ -65,7 +65,7 @@ export default class Lucky {
       window.addEventListener('resize', throttle(() => this.resize(), 300))
     }
     // 监听异步设置 html 的 fontSize 并重新绘制
-    if (window && typeof window.MutationObserver === 'function') {
+    if (window && window.document && typeof window.MutationObserver === 'function' && this.config.flag === 'WEB') {
       new window.MutationObserver(() => {
         this.resize()
       }).observe(document.documentElement, { attributes: true })

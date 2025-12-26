@@ -205,7 +205,15 @@ export default class LuckyScratch extends Lucky {
     const rect = canvas.getBoundingClientRect()
     const x = (e.clientX - rect.left) * this.config.dpr
     const y = (e.clientY - rect.top) * this.config.dpr
+    this.drawArcAt(x, y)
+  }
 
+  /**
+   * 在指定坐标绘制刮痕
+   * @param x 相对于 canvas 的 x 坐标（物理像素，已乘以 dpr）
+   * @param y 相对于 canvas 的 y 坐标（物理像素，已乘以 dpr）
+   */
+  private drawArcAt(x: number, y: number): void {
     this.ctx.globalCompositeOperation = 'destination-out'
     this.ctx.beginPath()
     this.ctx.arc(x, y, this.scratch.radius * this.config.dpr, 0, Math.PI * 2)
@@ -249,5 +257,75 @@ export default class LuckyScratch extends Lucky {
    */
   public setDisabled(disabled: boolean): void {
     this.disabled = disabled
+  }
+
+  /**
+   * 公共方法：处理触摸/鼠标开始事件
+   * 供小程序、uni-app 等非 DOM 环境使用
+   * @param x 相对于 canvas 的 x 坐标（逻辑像素）
+   * @param y 相对于 canvas 的 y 坐标（逻辑像素）
+   */
+  public async handleTouchStart(x: number, y: number): Promise<void> {
+    // 如果已完成或被禁用，不再响应事件
+    if (this.isCompleted || this.disabled) return
+
+    // 调用 onceBeforeStart 钩子（只在第一次刮动时）
+    if (this.isFirstScratch && this.onceBeforeStartCallback) {
+      try {
+        const result = await this.onceBeforeStartCallback()
+        if (result === false) {
+          // 校验失败，阻止刮奖
+          return
+        }
+      } catch (err) {
+        console.error('onceBeforeStart 回调执行出错:', err)
+        return
+      }
+      // 标记已经不是第一次刮动了
+      this.isFirstScratch = false
+    }
+
+    // 调用 beforeStart 钩子（每次刮动都会调用）
+    if (this.beforeStartCallback) {
+      try {
+        const result = await this.beforeStartCallback()
+        if (result === false) {
+          // 校验失败，阻止刮奖
+          return
+        }
+      } catch (err) {
+        console.error('beforeStart 回调执行出错:', err)
+        return
+      }
+    }
+
+    this.isScratching = true
+    this.startCallback?.()
+    // 将逻辑像素转换为物理像素（乘以 dpr）
+    this.drawArcAt(x * this.config.dpr, y * this.config.dpr)
+  }
+
+  /**
+   * 公共方法：处理触摸/鼠标移动事件
+   * 供小程序、uni-app 等非 DOM 环境使用
+   * @param x 相对于 canvas 的 x 坐标（逻辑像素）
+   * @param y 相对于 canvas 的 y 坐标（逻辑像素）
+   */
+  public handleTouchMove(x: number, y: number): void {
+    if (!this.isScratching || this.isCompleted || this.disabled) return
+    // 将逻辑像素转换为物理像素（乘以 dpr）
+    this.drawArcAt(x * this.config.dpr, y * this.config.dpr)
+  }
+
+  /**
+   * 公共方法：处理触摸/鼠标结束事件
+   * 供小程序、uni-app 等非 DOM 环境使用
+   */
+  public handleTouchEnd(): void {
+    if (!this.isScratching || this.isCompleted || this.disabled) return
+    this.isScratching = false
+    // 计算刮开比例
+    this.checkProgress()
+    this.endCallback?.()
   }
 }
