@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/LuckDraw/lucky-scratch.git"
+    "url": "git+https://github.com/Cosmiumx/lucky-scratch.git"
   },
   "keywords": [
     "taro刮刮卡",
@@ -23,7 +23,7 @@
     "taro2"
   ],
   "bugs": {
-    "url": "https://github.com/LuckDraw/lucky-scratch/issues"
+    "url": "https://github.com/Cosmiumx/lucky-scratch/issues"
   },
   "homepage": "https://100px.net",
   "dependencies": {

@@ -12,10 +12,10 @@
     "build": "rollup --config rollup.config.build.js"
   },
   "homepage": "https://100px.net",
-  "bugs": "https://github.com/LuckDraw/lucky-scratch/issues",
+  "bugs": "https://github.com/Cosmiumx/lucky-scratch/issues",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/LuckDraw/lucky-scratch.git",
+    "url": "git+https://github.com/Cosmiumx/lucky-scratch.git",
     "directory": "packages/lucky-scratch"
   },
   "author": "ldq <ldq404@qq.com>",
