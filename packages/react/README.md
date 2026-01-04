@@ -138,20 +138,20 @@ export default App
 
 ### Props 属性
 
-| 属性 | 类型 | 默认值 | 说明 |
-|------|------|--------|------|
-| width | String | '300px' | 画布宽度 |
-| height | String | '150px' | 画布高度 |
-| mask | Object | - | 遮罩层配置 |
-| scratch | Object | - | 刮奖配置 |
+| 属性    | 类型   | 默认值  | 说明       |
+| ------- | ------ | ------- | ---------- |
+| width   | String | '300px' | 画布宽度   |
+| height  | String | '150px' | 画布高度   |
+| mask    | Object | -       | 遮罩层配置 |
+| scratch | Object | -       | 刮奖配置   |
 
 ### mask 遮罩层配置
 
-| 属性 | 类型 | 默认值 | 说明 |
-|------|------|--------|------|
-| type | String | 'color' | 遮罩类型：'color' 或 'image' |
-| color | String | '#ccc' | type 为 'color' 时的颜色值 |
-| src | String | - | type 为 'image' 时的图片地址 |
+| 属性  | 类型   | 默认值  | 说明                         |
+| ----- | ------ | ------- | ---------------------------- |
+| type  | String | 'color' | 遮罩类型：'color' 或 'image' |
+| color | String | '#ccc'  | type 为 'color' 时的颜色值   |
+| src   | String | -       | type 为 'image' 时的图片地址 |
 
 **示例：**
 ```jsx
@@ -164,10 +164,10 @@ mask={{ type: 'image', src: 'https://example.com/mask.png' }}
 
 ### scratch 刮奖配置
 
-| 属性 | 类型 | 默认值 | 说明 |
-|------|------|--------|------|
-| radius | Number | 20 | 刮开半径（像素） |
-| percent | Number | 0.5 | 触发成功的刮开比例，范围 0-1 |
+| 属性    | 类型   | 默认值 | 说明                         |
+| ------- | ------ | ------ | ---------------------------- |
+| radius  | Number | 20     | 刮开半径（像素）             |
+| percent | Number | 0.5    | 触发成功的刮开比例，范围 0-1 |
 
 **示例：**
 ```jsx
@@ -176,14 +176,14 @@ scratch={{ radius: 30, percent: 0.6 }}
 
 ### Events 事件
 
-| 事件名 | 参数 | 说明 |
-|--------|------|------|
-| onOnceBeforeStart | resolve | 首次刮奖前的校验，调用 resolve() 允许刮奖 |
-| onBeforeStart | resolve | 每次刮动前的校验 |
-| onStart | - | 开始刮奖时触发 |
-| onEnd | - | 停止刮奖时触发 |
-| onSuccess | progress | 刮开达到阈值时触发，progress 为当前刮开的百分比 |
-| onAfterInit | - | 初始化完成时触发 |
+| 事件名            | 参数     | 说明                                            |
+| ----------------- | -------- | ----------------------------------------------- |
+| onOnceBeforeStart | resolve  | 首次刮奖前的校验，调用 resolve() 允许刮奖       |
+| onBeforeStart     | resolve  | 每次刮动前的校验                                |
+| onStart           | -        | 开始刮奖时触发                                  |
+| onEnd             | -        | 停止刮奖时触发                                  |
+| onSuccess         | progress | 刮开达到阈值时触发，progress 为当前刮开的百分比 |
+| onAfterInit       | -        | 初始化完成时触发                                |
 
 **事件示例：**
 ```jsx
@@ -208,9 +208,9 @@ scratch={{ radius: 30, percent: 0.6 }}
 
 ### Methods 方法
 
-| 方法名 | 参数 | 说明 |
-|--------|------|------|
-| init() | - | 重置刮刮卡到初始状态 |
+| 方法名 | 参数 | 说明                 |
+| ------ | ---- | -------------------- |
+| init() | -    | 重置刮刮卡到初始状态 |
 
 **调用示例：**
 ```jsx

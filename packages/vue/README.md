@@ -21,11 +21,6 @@
 
 <div align="center">
 
-|适配框架|npm包|最新版本|npm下载量|CDN使用量|
-| :-: | :-: | :-: | :-: | :-: |
-|`JS` / `JQ`|[lucky-canvas](https://100px.net/usage/js.html)|<img src="https://img.shields.io/npm/v/lucky-canvas?color=%23ffba15&logo=npm&style=flat-square" alt="version" />|<a href="https://www.npmjs.com/package/lucky-canvas" target="_black"><img src="https://img.shields.io/npm/dm/lucky-canvas?color=%23ffba15&logo=npm&style=flat-square" alt="downloads" /></a>|<a href="https://www.jsdelivr.com/package/npm/lucky-canvas" target="_black"><img src="https://data.jsdelivr.com/v1/package/npm/lucky-canvas/badge" alt="downloads" /></a>|
-|`Vue2.x` / `Vue3.x`|[@lucky-canvas/vue](https://100px.net/usage/vue.html)|<img src="https://img.shields.io/npm/v/@lucky-canvas/vue?color=%23ffba15&logo=npm&style=flat-square" alt="version" />|<a href="https://www.npmjs.com/package/@lucky-canvas/vue" target="_black"><img src="https://img.shields.io/npm/dm/@lucky-canvas/vue?color=%23ffba15&logo=npm&style=flat-square" alt="downloads" /></a>|<a href="https://www.jsdelivr.com/package/npm/@lucky-canvas/vue" target="_black"><img src="https://data.jsdelivr.com/v1/package/npm/@lucky-canvas/vue/badge" alt="downloads" /></a>|
-
 </div>
 
 <br />
@@ -143,20 +138,20 @@ export default {
 
 ### Props 属性
 
-| 属性 | 类型 | 默认值 | 说明 |
-|------|------|--------|------|
-| width | String | '300px' | 画布宽度 |
-| height | String | '150px' | 画布高度 |
-| mask | Object | - | 遮罩层配置 |
-| scratch | Object | - | 刮奖配置 |
+| 属性    | 类型   | 默认值  | 说明       |
+| ------- | ------ | ------- | ---------- |
+| width   | String | '300px' | 画布宽度   |
+| height  | String | '150px' | 画布高度   |
+| mask    | Object | -       | 遮罩层配置 |
+| scratch | Object | -       | 刮奖配置   |
 
 ### mask 遮罩层配置
 
-| 属性 | 类型 | 默认值 | 说明 |
-|------|------|--------|------|
-| type | String | 'color' | 遮罩类型：'color' 或 'image' |
-| color | String | '#ccc' | type 为 'color' 时的颜色值 |
-| src | String | - | type 为 'image' 时的图片地址 |
+| 属性  | 类型   | 默认值  | 说明                         |
+| ----- | ------ | ------- | ---------------------------- |
+| type  | String | 'color' | 遮罩类型：'color' 或 'image' |
+| color | String | '#ccc'  | type 为 'color' 时的颜色值   |
+| src   | String | -       | type 为 'image' 时的图片地址 |
 
 **示例：**
 ```javascript
@@ -169,10 +164,10 @@ export default {
 
 ### scratch 刮奖配置
 
-| 属性 | 类型 | 默认值 | 说明 |
-|------|------|--------|------|
-| radius | Number | 20 | 刮开半径（像素） |
-| percent | Number | 0.5 | 触发成功的刮开比例，范围 0-1 |
+| 属性    | 类型   | 默认值 | 说明                         |
+| ------- | ------ | ------ | ---------------------------- |
+| radius  | Number | 20     | 刮开半径（像素）             |
+| percent | Number | 0.5    | 触发成功的刮开比例，范围 0-1 |
 
 **示例：**
 ```javascript
@@ -181,14 +176,14 @@ export default {
 
 ### Events 事件
 
-| 事件名 | 参数 | 说明 |
-|--------|------|------|
-| once-before-start | resolve | 首次刮奖前的校验，调用 resolve() 允许刮奖 |
-| before-start | resolve | 每次刮动前的校验 |
-| start | - | 开始刮奖时触发 |
-| end | - | 停止刮奖时触发 |
-| success | progress | 刮开达到阈值时触发，progress 为当前刮开的百分比 |
-| after-init | - | 初始化完成时触发 |
+| 事件名            | 参数     | 说明                                            |
+| ----------------- | -------- | ----------------------------------------------- |
+| once-before-start | resolve  | 首次刮奖前的校验，调用 resolve() 允许刮奖       |
+| before-start      | resolve  | 每次刮动前的校验                                |
+| start             | -        | 开始刮奖时触发                                  |
+| end               | -        | 停止刮奖时触发                                  |
+| success           | progress | 刮开达到阈值时触发，progress 为当前刮开的百分比 |
+| after-init        | -        | 初始化完成时触发                                |
 
 **事件示例：**
 ```vue
@@ -236,9 +231,9 @@ methods: {
 
 ### Methods 方法
 
-| 方法名 | 参数 | 说明 |
-|--------|------|------|
-| init() | - | 重置刮刮卡到初始状态 |
+| 方法名 | 参数 | 说明                 |
+| ------ | ---- | -------------------- |
+| init() | -    | 重置刮刮卡到初始状态 |
 
 **调用示例：**
 ```javascript
