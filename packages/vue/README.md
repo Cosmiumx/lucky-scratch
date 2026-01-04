@@ -25,60 +25,230 @@
 | :-: | :-: | :-: | :-: | :-: |
 |`JS` / `JQ`|[lucky-canvas](https://100px.net/usage/js.html)|<img src="https://img.shields.io/npm/v/lucky-canvas?color=%23ffba15&logo=npm&style=flat-square" alt="version" />|<a href="https://www.npmjs.com/package/lucky-canvas" target="_black"><img src="https://img.shields.io/npm/dm/lucky-canvas?color=%23ffba15&logo=npm&style=flat-square" alt="downloads" /></a>|<a href="https://www.jsdelivr.com/package/npm/lucky-canvas" target="_black"><img src="https://data.jsdelivr.com/v1/package/npm/lucky-canvas/badge" alt="downloads" /></a>|
 |`Vue2.x` / `Vue3.x`|[@lucky-canvas/vue](https://100px.net/usage/vue.html)|<img src="https://img.shields.io/npm/v/@lucky-canvas/vue?color=%23ffba15&logo=npm&style=flat-square" alt="version" />|<a href="https://www.npmjs.com/package/@lucky-canvas/vue" target="_black"><img src="https://img.shields.io/npm/dm/@lucky-canvas/vue?color=%23ffba15&logo=npm&style=flat-square" alt="downloads" /></a>|<a href="https://www.jsdelivr.com/package/npm/@lucky-canvas/vue" target="_black"><img src="https://data.jsdelivr.com/v1/package/npm/@lucky-canvas/vue/badge" alt="downloads" /></a>|
-|`React`|[@lucky-canvas/react](https://100px.net/usage/react.html)|<img src="https://img.shields.io/npm/v/@lucky-canvas/react?color=%23ffba15&logo=npm&style=flat-square" alt="version" />|<a href="https://www.npmjs.com/package/@lucky-canvas/react" target="_black"><img src="https://img.shields.io/npm/dm/@lucky-canvas/react?color=%23ffba15&logo=npm&style=flat-square" alt="downloads" /></a>|-|
-|`UniApp`|[@lucky-canvas/uni](https://100px.net/usage/uni.html)|<img src="https://img.shields.io/npm/v/@lucky-canvas/uni?color=%23ffba15&logo=npm&style=flat-square" alt="version" />|<a href="https://www.npmjs.com/package/@lucky-canvas/uni" target="_black"><img src="https://img.shields.io/npm/dm/@lucky-canvas/uni?color=%23ffba15&logo=npm&style=flat-square" alt="downloads" /></a>|-|
-|`Taro3.x`|[@lucky-canvas/taro](https://100px.net/usage/taro.html)|<img src="https://img.shields.io/npm/v/@lucky-canvas/taro?color=%23ffba15&logo=npm&style=flat-square" alt="version" />|<a href="https://www.npmjs.com/package/@lucky-canvas/taro" target="_black"><img src="https://img.shields.io/npm/dm/@lucky-canvas/taro?color=%23ffba15&logo=npm&style=flat-square" alt="downloads" /></a>|-|
-|`微信小程序`|[@lucky-canvas/mini](https://100px.net/usage/wx.html)|<img src="https://img.shields.io/npm/v/@lucky-canvas/mini?color=%23ffba15&logo=npm&style=flat-square" alt="version" />|<a href="https://www.npmjs.com/package/@lucky-canvas/mini" target="_black"><img src="https://img.shields.io/npm/dm/@lucky-canvas/mini?color=%23ffba15&logo=npm&style=flat-square" alt="downloads" /></a>|-|
 
 </div>
 
 <br />
 
-## 在 vue2.x / vue3.x 中使用
+## 安装
 
-- [跳转官网 查看详情](https://100px.net/usage/vue.html)
+```bash
+npm install @lucky-scratch/vue
+# 或
+yarn add @lucky-scratch/vue
+```
 
-### 组件列表
+> 支持 Vue 2.x 和 Vue 3.x
 
-- `<lucky-wheel>` - 大转盘抽奖
-- `<lucky-grid>` - 九宫格抽奖
-- `<slot-machine>` - 老虎机抽奖
-- `<lucky-scratch>` - 刮刮卡抽奖 ✨ 新增
+<br />
 
-### 刮刮卡快速开始
+## 快速开始
+
+### Vue 3.x 示例
 
 ```vue
 <template>
   <div class="scratch-wrapper">
-    <div class="prize-content">🎉 恭喜中奖 🎉</div>
+    <!-- 奖品内容 -->
+    <div class="prize-content">🎉 恭喜中奖！</div>
+    
+    <!-- 刮刮卡组件 -->
     <lucky-scratch
       ref="scratchRef"
       width="300px"
-      height="150px"
+      height="200px"
       :mask="{ type: 'color', color: '#ccc' }"
       :scratch="{ radius: 20, percent: 0.5 }"
-      @once-before-start="handleAuth"
       @success="handleSuccess"
     />
+    
+    <button @click="reset">重置</button>
+  </div>
+</template>
+
+<script setup>
+import { ref } from 'vue'
+import { LuckyScratch } from '@lucky-scratch/vue'
+
+const scratchRef = ref(null)
+
+const handleSuccess = (progress) => {
+  console.log('刮开进度:', progress)
+  alert('恭喜中奖！')
+}
+
+const reset = () => {
+  scratchRef.value?.init()
+}
+</script>
+
+<style scoped>
+.scratch-wrapper {
+  position: relative;
+  width: 300px;
+  height: 200px;
+}
+.prize-content {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: #ff6b6b;
+}
+</style>
+```
+
+### Vue 2.x 示例
+
+```vue
+<template>
+  <div class="scratch-wrapper">
+    <div class="prize-content">🎉 恭喜中奖！</div>
+    <lucky-scratch
+      ref="scratchRef"
+      width="300px"
+      height="200px"
+      :mask="{ type: 'color', color: '#ccc' }"
+      :scratch="{ radius: 20, percent: 0.5 }"
+      @success="handleSuccess"
+    />
+    <button @click="reset">重置</button>
   </div>
 </template>
 
 <script>
+import { LuckyScratch } from '@lucky-scratch/vue'
+
 export default {
+  components: { LuckyScratch },
   methods: {
-    handleAuth(resolve) {
-      // 权限校验（只在第一次刮动时触发）
-      resolve(true) // true 允许，false 阻止
-    },
     handleSuccess(progress) {
+      console.log('刮开进度:', progress)
       alert('恭喜中奖！')
+    },
+    reset() {
+      this.$refs.scratchRef.init()
     }
   }
 }
 </script>
 ```
 
-查看 `vue2.html` 和 `vue3.html` 获取完整示例
+<br />
+
+## API
+
+### Props 属性
+
+| 属性 | 类型 | 默认值 | 说明 |
+|------|------|--------|------|
+| width | String | '300px' | 画布宽度 |
+| height | String | '150px' | 画布高度 |
+| mask | Object | - | 遮罩层配置 |
+| scratch | Object | - | 刮奖配置 |
+
+### mask 遮罩层配置
+
+| 属性 | 类型 | 默认值 | 说明 |
+|------|------|--------|------|
+| type | String | 'color' | 遮罩类型：'color' 或 'image' |
+| color | String | '#ccc' | type 为 'color' 时的颜色值 |
+| src | String | - | type 为 'image' 时的图片地址 |
+
+**示例：**
+```javascript
+// 颜色遮罩
+:mask="{ type: 'color', color: '#cccccc' }"
+
+// 图片遮罩
+:mask="{ type: 'image', src: 'https://example.com/mask.png' }"
+```
+
+### scratch 刮奖配置
+
+| 属性 | 类型 | 默认值 | 说明 |
+|------|------|--------|------|
+| radius | Number | 20 | 刮开半径（像素） |
+| percent | Number | 0.5 | 触发成功的刮开比例，范围 0-1 |
+
+**示例：**
+```javascript
+:scratch="{ radius: 30, percent: 0.6 }"
+```
+
+### Events 事件
+
+| 事件名 | 参数 | 说明 |
+|--------|------|------|
+| once-before-start | resolve | 首次刮奖前的校验，调用 resolve() 允许刮奖 |
+| before-start | resolve | 每次刮动前的校验 |
+| start | - | 开始刮奖时触发 |
+| end | - | 停止刮奖时触发 |
+| success | progress | 刮开达到阈值时触发，progress 为当前刮开的百分比 |
+| after-init | - | 初始化完成时触发 |
+
+**事件示例：**
+```vue
+<lucky-scratch
+  @once-before-start="handleAuth"
+  @start="handleStart"
+  @success="handleSuccess"
+/>
+```
+
+```javascript
+// Vue 3 setup
+const handleAuth = (resolve) => {
+  // 权限验证
+  if (isLogin) {
+    resolve() // 允许刮奖
+  } else {
+    alert('请先登录')
+  }
+}
+
+const handleStart = () => {
+  console.log('开始刮奖')
+}
+
+const handleSuccess = (progress) => {
+  console.log('刮开进度:', progress)
+  alert('恭喜中奖！')
+}
+
+// Vue 2 methods
+methods: {
+  handleAuth(resolve) {
+    if (this.isLogin) {
+      resolve()
+    } else {
+      alert('请先登录')
+    }
+  },
+  handleSuccess(progress) {
+    alert('恭喜中奖！')
+  }
+}
+```
+
+### Methods 方法
+
+| 方法名 | 参数 | 说明 |
+|--------|------|------|
+| init() | - | 重置刮刮卡到初始状态 |
+
+**调用示例：**
+```javascript
+// Vue 3
+const scratchRef = ref(null)
+scratchRef.value?.init()
+
+// Vue 2
+this.$refs.scratchRef.init()
+```
 
 <br />
 

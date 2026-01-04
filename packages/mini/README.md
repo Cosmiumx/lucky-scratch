@@ -6,27 +6,43 @@
 
 <br />
 
-## 安装 - Installation
+## 安装
+
+### 方式 1：通过 npm 安装（推荐）
+
+#### 1. 初始化 package.json
+
+先找到小程序项目的根目录，看是否有 `package.json` 文件，如果没有再执行下面的命令来创建该文件：
 
 ```bash
-npm install @lucky-scratch/mini
+npm init -y
 ```
 
-<br />
+#### 2. 安装 npm 包
 
-## 使用 - Usage
+```bash
+npm install @lucky-scratch/mini@latest
+```
 
-### 1. 在 app.json 中配置组件
+#### 3. 构建 npm
+
+在微信开发者工具中：
+
+1. 找到左上角点击 **工具**
+2. 点击 **构建 npm**
+3. 弹窗提示 **构建成功** 即可！
+
+#### 4. 引入自定义组件
+
+可以在 `app.json` 全局引入，也可以在指定页面的 `.json` 文件里引入：
 
 ```json
 {
   "usingComponents": {
-    "lucky-scratch": "./components/lucky-scratch/index"
+    "lucky-scratch": "/miniprogram_npm/@lucky-scratch/mini/lucky-scratch-component/index"
   }
 }
 ```
-
-### 2. 在页面中使用
 
 ```xml
 <lucky-scratch
@@ -41,7 +57,11 @@ npm install @lucky-scratch/mini
 />
 ```
 
-### 3. 配置参数
+<br />
+
+## 使用
+
+### 在页面中使用组件
 
 ```javascript
 Page({

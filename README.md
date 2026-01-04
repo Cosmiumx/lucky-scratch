@@ -29,8 +29,8 @@
 |`JS` / `JQ`|[lucky-scratch](https://100px.net/usage/js.html)|<img src="https://img.shields.io/npm/v/lucky-scratch?color=%23ffba15&logo=npm&style=flat-square" alt="version" />|<a href="https://www.npmjs.com/package/lucky-scratch" target="_black"><img src="https://img.shields.io/npm/dm/lucky-scratch?color=%23ffba15&logo=npm&style=flat-square" alt="downloads" /></a>|
 |`Vue`|[@lucky-scratch/vue](https://100px.net/usage/vue.html)|<img src="https://img.shields.io/npm/v/@lucky-scratch/vue?color=%23ffba15&logo=npm&style=flat-square" alt="version" />|<a href="https://www.npmjs.com/package/@lucky-scratch/vue" target="_black"><img src="https://img.shields.io/npm/dm/@lucky-scratch/vue?color=%23ffba15&logo=npm&style=flat-square" alt="downloads" /></a>|
 |`React`|[@lucky-scratch/react](https://100px.net/usage/react.html)|<img src="https://img.shields.io/npm/v/@lucky-scratch/react?color=%23ffba15&logo=npm&style=flat-square" alt="version" />|<a href="https://www.npmjs.com/package/@lucky-scratch/react" target="_black"><img src="https://img.shields.io/npm/dm/@lucky-scratch/react?color=%23ffba15&logo=npm&style=flat-square" alt="downloads" /></a>|
-|`UniApp`|[@lucky-scratch/uni](https://100px.net/usage/uni.html)|<img src="https://img.shields.io/npm/v/@lucky-scratch/uni?color=%23ffba15&logo=npm&style=flat-square" alt="version" />|<a href="https://www.npmjs.com/package/@lucky-scratch/uni" target="_black"><img src="https://img.shields.io/npm/dm/@lucky-scratch/uni?color=%23ffba15&logo=npm&style=flat-square" alt="downloads" /></a>|
-|`Taro3.x`|[@lucky-scratch/taro](https://100px.net/usage/taro.html)|<img src="https://img.shields.io/npm/v/@lucky-scratch/taro?color=%23ffba15&logo=npm&style=flat-square" alt="version" />|<a href="https://www.npmjs.com/package/@lucky-scratch/taro" target="_black"><img src="https://img.shields.io/npm/dm/@lucky-scratch/taro?color=%23ffba15&logo=npm&style=flat-square" alt="downloads" /></a>|
+<!-- |`UniApp`|[@lucky-scratch/uni](https://100px.net/usage/uni.html)|<img src="https://img.shields.io/npm/v/@lucky-scratch/uni?color=%23ffba15&logo=npm&style=flat-square" alt="version" />|<a href="https://www.npmjs.com/package/@lucky-scratch/uni" target="_black"><img src="https://img.shields.io/npm/dm/@lucky-scratch/uni?color=%23ffba15&logo=npm&style=flat-square" alt="downloads" /></a>| -->
+<!-- |`Taro3.x`|[@lucky-scratch/taro](https://100px.net/usage/taro.html)|<img src="https://img.shields.io/npm/v/@lucky-scratch/taro?color=%23ffba15&logo=npm&style=flat-square" alt="version" />|<a href="https://www.npmjs.com/package/@lucky-scratch/taro" target="_black"><img src="https://img.shields.io/npm/dm/@lucky-scratch/taro?color=%23ffba15&logo=npm&style=flat-square" alt="downloads" /></a>| -->
 |`微信小程序`|[@lucky-scratch/mini](https://100px.net/usage/wx.html)|<img src="https://img.shields.io/npm/v/@lucky-scratch/mini?color=%23ffba15&logo=npm&style=flat-square" alt="version" />|<a href="https://www.npmjs.com/package/@lucky-scratch/mini" target="_black"><img src="https://img.shields.io/npm/dm/@lucky-scratch/mini?color=%23ffba15&logo=npm&style=flat-square" alt="downloads" /></a>|
 
 </div>
@@ -41,7 +41,7 @@
 
 - 🎨 支持自定义遮罩层（颜色/图片）
 - 🖱️ 支持触摸和鼠标刮奖
-- 📱 跨平台支持（Web、小程序、UniApp、Taro）
+- 📱 跨平台支持（Web、小程序）
 - 🎯 可配置刮开比例触发中奖
 - 🔧 灵活的事件回调系统
 - 💪 TypeScript 支持
@@ -62,11 +62,11 @@ npm install @lucky-scratch/vue
 # React
 npm install @lucky-scratch/react
 
-# UniApp
-npm install @lucky-scratch/uni
+# # UniApp
+# npm install @lucky-scratch/uni
 
-# Taro
-npm install @lucky-scratch/taro
+# # Taro
+# npm install @lucky-scratch/taro
 
 # 微信小程序
 npm install @lucky-scratch/mini
@@ -135,7 +135,7 @@ const scratch = new LuckyScratch({
 
 <table align="center">
   <tr>
-    <td align="center"><a href="https://github.com/Cosmiumx" target="_blank"><img width="50px" src="https://avatars.githubusercontent.com/u/36689704?v=4"></a><div><span title="核心开发">🤖</span> <span title="基础建设">🛰</span> <span title="维护文档">📚</span></div></td>
+    <td align="center"><a href="https://github.com/Cosmiumx" target="_blank"><img width="50px" src="https://avatars.githubusercontent.com/u/40048575?v=4"></a><div><span title="核心开发">🤖</span> <span title="基础建设">🛰</span> <span title="维护文档">📚</span></div></td>
   </tr>
 </table>
 
