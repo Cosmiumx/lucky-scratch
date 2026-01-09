@@ -19,6 +19,10 @@
   </p>
 </div>
 
+<div align="center">
+  <img src="https://unpkg.com/cosmium@0.0.1/images/other/lucky-scratch.gif" alt="lucky-scratch demo" />
+</div>
+
 <br />
 
 ## 官方文档

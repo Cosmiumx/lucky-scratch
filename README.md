@@ -1,6 +1,6 @@
 
 <div align="center">
-  <img src="https://unpkg.com/buuing@0.0.1/imgs/lucky-canvas.png" width="128" alt="logo" />
+  <img src="https://unpkg.com/cosmium@0.0.1/images/other/lucky-scratch-logo.png" width="128" alt="logo" />
   <h1>lucky-scratch 刮刮卡插件</h1>
   <p>一个基于 JavaScript 的跨平台刮刮卡抽奖插件</p>
   <p>
@@ -20,6 +20,10 @@
       <img src="https://data.jsdelivr.com/v1/package/npm/lucky-scratch/badge" alt="downloads" />
     </a>
   </p>
+</div>
+
+<div align="center">
+  <img src="https://unpkg.com/cosmium@0.0.1/images/other/lucky-scratch.gif" alt="lucky-scratch demo" />
 </div>
 
 <div align="center">

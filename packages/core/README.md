@@ -1,7 +1,7 @@
 
 
 <div align="center">
-  <img src="https://unpkg.com/buuing@0.0.1/imgs/lucky-canvas.png" width="128" alt="logo" />
+  <img src="https://unpkg.com/cosmium@0.0.1/images/other/lucky-scratch-logo.png" width="128" alt="logo" />
   <h1>lucky-scratch 刮刮卡插件</h1>
   <p>一个基于 JavaScript 的跨平台刮刮卡抽奖插件</p>
   <p>
@@ -18,6 +18,10 @@
       <img src="https://img.shields.io/github/license/Cosmiumx/lucky-scratch?color=%232dce89&logo=github&style=flat-square" alt="license" />
     </a>
   </p>
+</div>
+
+<div align="center">
+  <img src="https://unpkg.com/cosmium@0.0.1/images/other/lucky-scratch.gif" alt="lucky-scratch demo" />
 </div>
 
 <br />
@@ -42,7 +46,7 @@ yarn add lucky-scratch
 <script src="https://unpkg.com/lucky-scratch@latest/dist/index.umd.js"></script>
 
 <!-- 指定版本 -->
-<script src="https://cdn.jsdelivr.net/npm/lucky-scratch@1.1.2/dist/index.umd.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lucky-scratch@1.1.3/dist/index.umd.js"></script>
 ```
 
 <br />

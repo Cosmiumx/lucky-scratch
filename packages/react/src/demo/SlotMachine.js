@@ -2,31 +2,31 @@ import SlotMachine from '../components/SlotMachine.js'
 import React from 'react'
 
 export default class SlotDemo extends React.Component {
-  constructor () {
+  constructor() {
     super()
     this.myLucky = React.createRef()
 
     const data = [
-        { name: '1元红包', img: 'https://unpkg.com/buuing@0.0.1/imgs/lucky-canvas.png' },
-        { name: '100元红包', img: 'https://unpkg.com/buuing@0.0.1/imgs/lucky-canvas.png' },
-        { name: '0.5元红包', img: 'https://unpkg.com/buuing@0.0.1/imgs/lucky-canvas.png' },
-        { name: '2元红包', img: 'https://unpkg.com/buuing@0.0.1/imgs/lucky-canvas.png' },
-        { name: '10元红包', img: 'https://unpkg.com/buuing@0.0.1/imgs/lucky-canvas.png' },
-        { name: '50元红包', img: 'https://unpkg.com/buuing@0.0.1/imgs/lucky-canvas.png' },
-        { name: '0.3元红包', img: 'https://unpkg.com/buuing@0.0.1/imgs/lucky-canvas.png' },
-        { name: '5元红包', img: 'https://unpkg.com/buuing@0.0.1/imgs/lucky-canvas.png' }
-      ]
-      let axis = [[0, 0], [1, 0], [2, 0], [2, 1], [2, 2], [1, 2], [0, 2], [0, 1]]
-      const prizes = []
-      for (let i = 0; i < 8; i++) {
-        let item = data[i]
-        prizes.push({
-          name: item.name,
-          index: i, x: axis[i][0], y: axis[i][1],
-          fonts: [{ text: item.name, top: '70%' }],
-          imgs: [{ src: item.img, width: '100%', top: '0%' }]
-        })
-      }
+      { name: '1元红包', img: 'https://unpkg.com/cosmium@0.0.1/images/other/lucky-scratch-logo.png' },
+      { name: '100元红包', img: 'https://unpkg.com/cosmium@0.0.1/images/other/lucky-scratch-logo.png' },
+      { name: '0.5元红包', img: 'https://unpkg.com/cosmium@0.0.1/images/other/lucky-scratch-logo.png' },
+      { name: '2元红包', img: 'https://unpkg.com/cosmium@0.0.1/images/other/lucky-scratch-logo.png' },
+      { name: '10元红包', img: 'https://unpkg.com/cosmium@0.0.1/images/other/lucky-scratch-logo.png' },
+      { name: '50元红包', img: 'https://unpkg.com/cosmium@0.0.1/images/other/lucky-scratch-logo.png' },
+      { name: '0.3元红包', img: 'https://unpkg.com/cosmium@0.0.1/images/other/lucky-scratch-logo.png' },
+      { name: '5元红包', img: 'https://unpkg.com/cosmium@0.0.1/images/other/lucky-scratch-logo.png' }
+    ]
+    let axis = [[0, 0], [1, 0], [2, 0], [2, 1], [2, 2], [1, 2], [0, 2], [0, 1]]
+    const prizes = []
+    for (let i = 0; i < 8; i++) {
+      let item = data[i]
+      prizes.push({
+        name: item.name,
+        index: i, x: axis[i][0], y: axis[i][1],
+        fonts: [{ text: item.name, top: '70%' }],
+        imgs: [{ src: item.img, width: '100%', top: '0%' }]
+      })
+    }
     this.state = {
       blocks: [
         { padding: '10px', background: '#ffc27a' },
@@ -35,9 +35,9 @@ export default class SlotDemo extends React.Component {
       ],
       prizes,
       slots: [
-          {},
-          {},
-          {},
+        {},
+        {},
+        {},
       ],
       defaultStyle: {
         borderRadius: 15,
@@ -66,14 +66,13 @@ export default class SlotDemo extends React.Component {
             this.myLucky.current.stop(index)
           }, 2500)
         }}
-        onEnd={prize => { 
+        onEnd={prize => {
           alert('恭喜获得大奖:' + prize.name)
         }}
       ></SlotMachine>
       <button onClick={e => {
-          this.myLucky.current.play()
+        this.myLucky.current.play()
       }}>play</button>
     </div>
   }
 }
- 

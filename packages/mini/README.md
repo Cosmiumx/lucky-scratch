@@ -4,6 +4,10 @@
   <p>一个基于微信小程序的刮刮卡抽奖插件</p>
 </div>
 
+<div align="center">
+  <img src="https://unpkg.com/cosmium@0.0.1/images/other/lucky-scratch.gif" alt="lucky-scratch demo" />
+</div>
+
 <br />
 
 ## 安装
