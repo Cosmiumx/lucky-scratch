@@ -39,9 +39,11 @@ export default class Lucky {
     this.data = data
     // 开始初始化
     if (!config.flag) config.flag = 'WEB'
-    if (config.el) config.divElement = document.querySelector(config.el) as HTMLDivElement
+    if (config.el && typeof document !== 'undefined') {
+      config.divElement = document.querySelector(config.el) as HTMLDivElement
+    }
     // 如果存在父盒子, 就创建canvas标签
-    if (config.divElement) {
+    if (config.divElement && typeof document !== 'undefined') {
       // 无论盒子内有没有canvas都执行覆盖逻辑
       config.canvasElement = document.createElement('canvas')
       config.divElement.appendChild(config.canvasElement)
@@ -51,7 +53,9 @@ export default class Lucky {
       config.ctx = config.canvasElement.getContext('2d')!
       // 添加版本信息到标签上, 方便定位版本问题
       config.canvasElement.setAttribute('package', `${name}@${version}`)
-      config.canvasElement.addEventListener('click', e => this.handleClick(e))
+      if (typeof config.canvasElement.addEventListener === 'function') {
+        config.canvasElement.addEventListener('click', e => this.handleClick(e))
+      }
     }
     this.ctx = config.ctx as CanvasRenderingContext2D
     // 初始化 window 方法
@@ -107,7 +111,7 @@ export default class Lucky {
    * 根标签的字体大小
    */
   protected setHTMLFontSize (): void {
-  if (!window || !window.getComputedStyle) return
+    if (!window || !window.getComputedStyle || typeof document === 'undefined') return
     this.htmlFontSize = +window.getComputedStyle(document.documentElement).fontSize.slice(0, -2)
   }
 

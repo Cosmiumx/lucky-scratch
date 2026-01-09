@@ -22,6 +22,10 @@ export const getImage = (src: string): Promise<ImgType> => {
  * @returns 返回一个离屏 canvas 用于渲染
  */
 export const cutRound = (img: ImgType, radius: number): ImgType => {
+  if (typeof document === 'undefined') {
+    console.warn('cutRound: document 不存在，在非浏览器环境中无法使用此功能')
+    return img // 返回原图
+  }
   const canvas = document.createElement('canvas')
   const ctx = canvas.getContext('2d')!
   const { width, height } = img
@@ -43,6 +47,10 @@ export const opacity = (
   img: ImgType,
   opacity: number
 ): ImgType => {
+  if (typeof document === 'undefined') {
+    console.warn('opacity: document 不存在，在非浏览器环境中无法使用此功能')
+    return img // 返回原图
+  }
   const canvas = document.createElement('canvas')
   const ctx = canvas.getContext('2d')!
   const { width, height } = img
@@ -106,6 +114,10 @@ export const blur = (
   img: ImgType,
   radius: number
 ): ImgType => {
+  if (typeof document === 'undefined') {
+    console.warn('blur: document 不存在，在非浏览器环境中无法使用此功能')
+    return img // 返回原图
+  }
   const canvas = document.createElement('canvas')
   const ctx = canvas.getContext('2d')!
   const { width, height } = img

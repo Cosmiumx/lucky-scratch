@@ -123,6 +123,9 @@ export default class LuckyScratch extends Lucky {
 
     const canvas = this.config.canvasElement
     if (!canvas) return
+    
+    // 小程序环境下不绑定 DOM 事件,应该使用 handleTouchStart/Move/End 方法
+    if (!this.isWeb()) return
     // 移动端 touch 事件
     canvas.addEventListener('touchstart', (e: TouchEvent) => {
       this.handleStart(e.touches[0])
@@ -142,9 +145,12 @@ export default class LuckyScratch extends Lucky {
       e.preventDefault()
       this.handleMove(e)
     })
-    document.addEventListener('mouseup', () => {
-      this.handleEnd()
-    })
+    // 只在 Web 环境下绑定 document 事件
+    if (typeof document !== 'undefined') {
+      document.addEventListener('mouseup', () => {
+        this.handleEnd()
+      })
+    }
   }
 
   private async handleStart(e: MouseEvent | Touch): Promise<void> {
