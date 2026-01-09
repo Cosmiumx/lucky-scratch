@@ -1,7 +1,6 @@
 .container {
   padding: 40rpx;
   min-height: 100vh;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
 
 .title {
@@ -32,7 +31,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(135deg, #ffd89b 0%, #19547b 100%);
   z-index: 0;
 }
 
@@ -44,7 +42,6 @@
 .prize-title {
   font-size: 48rpx;
   font-weight: bold;
-  color: white;
   margin-bottom: 10rpx;
 }
 

@@ -4,8 +4,7 @@
   ],
   "window":{
     "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#667eea",
-    "navigationBarTitleText": "刮刮卡抽奖示例",
+    "navigationBarTitleText": "刮刮卡抽奖",
     "navigationBarTextStyle":"white"
   },
   "usingComponents": {
