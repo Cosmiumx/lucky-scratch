@@ -46,7 +46,7 @@ yarn add lucky-scratch
 <script src="https://unpkg.com/lucky-scratch@latest/dist/index.umd.js"></script>
 
 <!-- 指定版本 -->
-<script src="https://cdn.jsdelivr.net/npm/lucky-scratch@1.1.3/dist/index.umd.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lucky-scratch@1.1.4/dist/index.umd.js"></script>
 ```
 
 <br />
